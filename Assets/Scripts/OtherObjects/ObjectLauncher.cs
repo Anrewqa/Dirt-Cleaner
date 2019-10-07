@@ -77,6 +77,7 @@ public class ObjectLauncher : MonoBehaviour
     public void ResetLauncher()
     {
         launched = false;
+        gameObject.SetActive(true);
     }
 
     private void AddToResetList()

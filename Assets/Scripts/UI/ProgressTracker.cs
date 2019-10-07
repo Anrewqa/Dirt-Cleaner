@@ -8,10 +8,8 @@ using TMPro;
 public class ProgressTracker : MonoBehaviour
 {
     [SerializeField] private PlayerMover mover;
-    [SerializeField] private Transform player;
     [SerializeField] private TextMeshProUGUI currentLevelNumber;
     [SerializeField] private TextMeshProUGUI nextLevelNumber;
-    [SerializeField] private LevelInfo level;
     [SerializeField] private Image progressBar;
     [SerializeField] private Color defaultColor = Color.white;
     [SerializeField] private Color completeColor = Color.green;

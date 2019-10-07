@@ -8,7 +8,7 @@ public class LevelReset : MonoBehaviour
     {
         for (int i = 0; i < ObjectsForReset.objects.Count; i++)
         {
-             ObjectsForReset.objects[i].GetComponent<TransformReset>().ResetTransform();
+            ObjectsForReset.objects[i].GetComponent<TransformReset>().ResetTransform();
             ObjectsForReset.objects[i].GetComponent<DisableTimer>().ResetTimer();
             ObjectsForReset.objects[i].GetComponent<ObjectLauncher>().ResetLauncher();
         }

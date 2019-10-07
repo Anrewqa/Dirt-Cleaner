@@ -11,20 +11,20 @@ public class LevelSaver : Editor
         DrawDefaultInspector();
 
         LevelBuilder level = (LevelBuilder)target;
-        if(GUILayout.Button("Save level"))
-        {
-            GameObject goToPrefab = level.GetLevel();
-            string localPath = "Assets/Levels/" + goToPrefab.name + ".prefab";
-            Debug.Log(localPath);
-            localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
-            PrefabUtility.SaveAsPrefabAssetAndConnect(goToPrefab, localPath, InteractionMode.UserAction);
-        }
+        //if(GUILayout.Button("Save level"))
+        //{
+        //    GameObject goToPrefab = level.GetLevel();
+        //    string localPath = "Assets/Levels/" + goToPrefab.name + ".prefab";
+        //    Debug.Log(localPath);
+        //    localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
+        //    PrefabUtility.SaveAsPrefabAssetAndConnect(goToPrefab, localPath, InteractionMode.UserAction);
+        //}
 
 
-        if (GUILayout.Button("Build level"))
-        {
-            level.BuildLevel();
-        }
+        //if (GUILayout.Button("Build level"))
+        //{
+        //    level.BuildLevel();
+        //}
     }
 
 }

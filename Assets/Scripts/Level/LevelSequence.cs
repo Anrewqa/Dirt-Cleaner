@@ -6,7 +6,7 @@ public class LevelSequence : MonoBehaviour
     [SerializeField] private int startLevelNumber = 1;
     [Tooltip("Number of level, that start endless cycle")]
     [SerializeField] private int cycleFrom = 25;
-    [SerializeField] private List<Level> levels = new List<Level>();
+    [SerializeField] private List<int> levels = new List<int>();
     [SerializeField] private LevelBuilder builder;
 
 
@@ -20,7 +20,7 @@ public class LevelSequence : MonoBehaviour
         if (levels.Count > startLevelNumber - 1)
         {
             builder.BuildLevel(startLevelNumber, levels[startLevelNumber - 1]);
-            if (startLevelNumber > levels.Count) startLevelNumber = cycleFrom;
+            if (startLevelNumber >= levels.Count) startLevelNumber = cycleFrom;
             else startLevelNumber++;            
         }
     }
