@@ -7,7 +7,6 @@ public class PlayerCollisionDetector : MonoBehaviour
 {
     private PlayerStateTracker stateTracker;
     [SerializeField] private int obstacleLayerNumber;
-    [SerializeField] private ToggleObject toggleObject;
     [SerializeField] private PlayerMover mover;
 
     public UnityEvent death = new UnityEvent();
@@ -19,29 +18,25 @@ public class PlayerCollisionDetector : MonoBehaviour
     }
 
 
-    //Sphere collider triggered
+    //Trigger collider
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<ObjectLauncher>())
         {
-            if (stateTracker.CurrentPlayerState == PlayerStateTracker.PlayerState.Normal)
+            if (other.GetComponent<ScorePointsContainer>())
             {
-                if(other.GetComponent<ScorePointsContainer>()) ScoreTracker.AddPoints(other.GetComponent<ScorePointsContainer>().Points);
-                other.GetComponent<ObjectLauncher>().Launch();
+                ScoreTracker.AddPoints(other.GetComponent<ScorePointsContainer>().UseContainer());
             }
-            else if (stateTracker.CurrentPlayerState == PlayerStateTracker.PlayerState.Rage)
-            {
-                other.GetComponent<ObjectLauncher>().RageLaunch();
-            }
+            other.GetComponent<ObjectLauncher>().Launch(stateTracker.CurrentPlayerState);
         }
+
         if (other.GetComponent<FinishTrigger>())
         {
             win?.Invoke();
-        }
-        
+        }        
     }
 
-    //Box (mesh) collider collide
+    //Non trigger collider
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.layer == obstacleLayerNumber && stateTracker.CurrentPlayerState != PlayerStateTracker.PlayerState.Rage)

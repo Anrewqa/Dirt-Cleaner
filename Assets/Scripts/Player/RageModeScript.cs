@@ -39,13 +39,12 @@ public class RageModeScript : MonoBehaviour
     private void ActivateRageMode()
     {
         rageModeOn = true;
-        //state.CurrentPlayerState = PlayerStateTracker.PlayerState.Rage;
         ActivateRageModeEvent?.Invoke();
     }
     private void DeactivateRageMode()
     {
+        timeInRage = 0;
         rageModeOn = false;
-        //state.CurrentPlayerState = PlayerStateTracker.PlayerState.Normal;
         DeactivateRageModeEvent?.Invoke();
     }
 }

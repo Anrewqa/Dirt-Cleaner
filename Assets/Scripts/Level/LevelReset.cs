@@ -11,6 +11,8 @@ public class LevelReset : MonoBehaviour
             ObjectsForReset.objects[i].GetComponent<TransformReset>().ResetTransform();
             ObjectsForReset.objects[i].GetComponent<DisableTimer>().ResetTimer();
             ObjectsForReset.objects[i].GetComponent<ObjectLauncher>().ResetLauncher();
+            if(ObjectsForReset.objects[i].GetComponent<ScorePointsContainer>())
+                ObjectsForReset.objects[i].GetComponent<ScorePointsContainer>().ResetContainer();
         }
 
         ObjectsForReset.objects.Clear();

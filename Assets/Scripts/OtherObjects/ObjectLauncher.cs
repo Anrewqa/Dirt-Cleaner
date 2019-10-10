@@ -32,7 +32,6 @@ public class ObjectLauncher : MonoBehaviour
     }
     #endregion
 
-
     [Header("Launch properties")]
     private bool launched;
     [SerializeField] private bool launchOnRage;
@@ -41,7 +40,6 @@ public class ObjectLauncher : MonoBehaviour
 
     [Header("Relations")]
     [SerializeField] private DisableTimer disableTimer;
-
 
     private Vector3 initialForce;    
 
@@ -53,24 +51,17 @@ public class ObjectLauncher : MonoBehaviour
         }
     }
 
-    public void Launch()
+    public void Launch(PlayerStateTracker.PlayerState state)
     {
-        AddToResetList();
-        if (!launchOnRage)
+        if(state == PlayerStateTracker.PlayerState.Normal)
         {
-            launched = true;
-            initialForce = Quaternion.Euler(Random.Range(xMin,xMax), 0, Random.Range(zMin,xMax)) * Vector3.up;
-            initialForce *= Random.Range(minMagnitude, maxMagnitude);
-            disableTimer.StartTimer();
+            if (launchOnRage) return;
         }
-    }
-
-    public void RageLaunch()
-    {
-        AddToResetList();
-        launched = true;
+        
         initialForce = Quaternion.Euler(Random.Range(xMin, xMax), 0, Random.Range(zMin, xMax)) * Vector3.up;
-        initialForce *= maxMagnitude;
+        initialForce *= Random.Range(minMagnitude, maxMagnitude);
+        launched = true;
+        AddToResetList();
         disableTimer.StartTimer();
     }
 
@@ -82,7 +73,7 @@ public class ObjectLauncher : MonoBehaviour
 
     private void AddToResetList()
     {
-        if (ObjectsForReset.objects.Contains(gameObject)) Debug.Log(gameObject.name + "already in list");
+        if (ObjectsForReset.objects.Contains(gameObject)) return;
         ObjectsForReset.objects.Add(gameObject);
     }
 
